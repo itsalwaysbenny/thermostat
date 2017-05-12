@@ -8,15 +8,15 @@ function Thermostat () {
 var thermostat = new Thermostat;
 
 Thermostat.prototype.increase = function() {
-  if(this.temp > this.powerSave[0][1]) { return thermostat.errorMax() };
+  if(this.temp > this.powerSave[0][1]) { return thermostat.error() };
   this.temp = this.temp + 1;
-  return this.temp
+  // return this.temp
 };
 
 Thermostat.prototype.decrease = function() {
-  if(this.temp === 10) { return thermostat.errorMin() };
+  if(this.temp === 10) { return thermostat.error() };
   this.temp = this.temp - 1;
-  return this.temp
+  // return this.temp
 };
 
 Thermostat.prototype.powerSaveSwitch = function() {
@@ -38,11 +38,10 @@ Thermostat.prototype.thermUsage = function() {
 
 };
 
-Thermostat.prototype.errorMin = function() {
-  if (this.temp === this.minTemp) {return "Minimum Temperature"};
-};
+Thermostat.prototype.error = function() {
+  if (this.temp === this.minTemp) {return "Minimum Temperature"}
+  else if (this.powerSave[0][0] === true && this.temp === 25) {return "Maximum Temperature"}
+  else if (this.powerSave[0][0] === false && this.temp === 32) {return "Maximum Temperature"}
+  else {return ""};
 
-Thermostat.prototype.errorMax = function() {
-  if (this.powerSave[0][0] === true && this.temp === 25) {return "Maximum Temperature"}
-  else if (this.powerSave[0][0] === false && this.temp === 32) {return "Maximum Temperature"};
 };

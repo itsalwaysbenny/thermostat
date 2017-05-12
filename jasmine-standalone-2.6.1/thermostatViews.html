@@ -7,11 +7,9 @@
 
   <h1>Thermostat</h1>
   <div>
-    <span id = "temperature">00</span>
-    <!-- <span id = "" -->
-    <span id = "Powersave">usage</span>
-
-
+    <span id = "temperature"></span>
+    <span id = "powerUsage"></span>
+    <span id = "error"></span>
   </div>
 
 
@@ -20,7 +18,7 @@
     <input type = "button" value = "Increase Temperature" id = "Up">
     <input type = "button" value = "Decrease Temperature" id = "Down">
     <input type = "button" value = "Reset Temperature" id = "Reset">
-    <input type = "button" value = "Powersaving Mode" id = "PS">
+    <input type = "button" value = "Powersaving Mode" id = "powerSave">
   </form>
 
 
@@ -29,19 +27,22 @@
     var thermostat = new Thermostat
 
     $("#temperature").html(thermostat.temp);
-    $("#Powersave").html(thermostat.thermUsage());
+    $("#powerUsage").html(thermostat.thermUsage());
+    $("#error").html(thermostat.error());
 
 
     $( "#Up" ).click(function() {
       thermostat.increase();
       $("#temperature").html(thermostat.temp);
       $("#Powersave").html(thermostat.thermUsage());
+      $("#error").html(thermostat.error());
     });
 
     $( "#Down" ).click(function( ) {
       thermostat.decrease();
       $("#temperature").html(thermostat.temp);
       $("#Powersave").html(thermostat.thermUsage());
+      $("#error").html(thermostat.error());
     });
 
     $( "#Reset" ).click(function( ) {
@@ -50,7 +51,7 @@
       $("#Powersave").html(thermostat.thermUsage());
     });
 
-    $( "#PS" ).click(function( ) {
+    $( "#powerSave" ).click(function( ) {
       thermostat.powerSaveSwitch();
       $("#temperature").html(thermostat.temp);
       $("#Powersave").html(thermostat.thermUsage());
