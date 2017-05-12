@@ -30,13 +30,11 @@ describe ("Thermostat", function() {
   });
 
   it("Thermostat switches on", function() {
-    thermostat.powerSaveSwitch();
-    thermostat.powerSaveSwitch();
     expect(thermostat.powerSave[0][0]).toBe (true);
   });
 
   it("Thermostat cannot increase past 25 if powerSave is on ", function() {
-    thermostat.temp = 32
+    thermostat.temp = 25
     expect(thermostat.increase()).toEqual ("Maximum Temperature")
   });
 
@@ -59,6 +57,14 @@ describe ("Thermostat", function() {
   it("Thermostat shows high usage message", function() {
     thermostat.temp = 26;
     expect(thermostat.thermUsage()).toEqual ("High Usage");
+  });
+
+  it("If temperature is above 25 when powersave turns on it is reset to 25", function() {
+    thermostat.temp = 25;
+    thermostat.powerSaveSwitch();
+    thermostat.increase();
+    thermostat.powerSaveSwitch();
+    expect(thermostat.temp).toEqual (25);
   });
 
 });
