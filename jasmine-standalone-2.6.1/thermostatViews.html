@@ -34,31 +34,28 @@
     $( "#Up" ).click(function() {
       thermostat.increase();
       $("#temperature").html(thermostat.temp);
-      $("#Powersave").html(thermostat.thermUsage());
+      $("#powerUsage").html(thermostat.thermUsage());
       $("#error").html(thermostat.error());
     });
 
     $( "#Down" ).click(function( ) {
       thermostat.decrease();
       $("#temperature").html(thermostat.temp);
-      $("#Powersave").html(thermostat.thermUsage());
+      $("#powerUsage").html(thermostat.thermUsage());
       $("#error").html(thermostat.error());
     });
 
     $( "#Reset" ).click(function( ) {
       thermostat.resetTemp();
       $("#temperature").html(thermostat.temp);
-      $("#Powersave").html(thermostat.thermUsage());
+      $("#powerUsage").html(thermostat.thermUsage());
     });
 
     $( "#powerSave" ).click(function( ) {
       thermostat.powerSaveSwitch();
       $("#temperature").html(thermostat.temp);
-      $("#Powersave").html(thermostat.thermUsage());
+      $("#powerUsage").html(thermostat.thermUsage());
     });
-
-
-
 
   </script>
 
