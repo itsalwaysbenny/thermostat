@@ -12,6 +12,9 @@
     <span id = "error"></span>
   </div>
 
+  <div>
+  <span id = "outsideTemp"></span>
+  </div>
 
 
   <form>
@@ -21,41 +24,45 @@
     <input type = "button" value = "Powersaving Mode" id = "powerSave">
   </form>
 
+  <script>
+  $.get("http://api.openweathermap.org/data/2.5/weather?q=London&appid=d1496232127b486a661187f3662a5156&units=metric", function(temperature) {
+    $("#outsideTemp").text(temperature.main.temp);
+  })
+  </script>
 
   <script>
 
+
     var thermostat = new Thermostat
 
-    $("#temperature").html(thermostat.temp);
-    $("#powerUsage").html(thermostat.thermUsage());
-    $("#error").html(thermostat.error());
-
-
-    $( "#Up" ).click(function() {
-      thermostat.increase();
+    function Usage() {
       $("#temperature").html(thermostat.temp);
       $("#powerUsage").html(thermostat.thermUsage());
       $("#error").html(thermostat.error());
+    }
+
+    Usage()
+
+    $( "#Up" ).click(function() {
+      thermostat.increase();
+      Usage()
     });
 
     $( "#Down" ).click(function( ) {
       thermostat.decrease();
-      $("#temperature").html(thermostat.temp);
-      $("#powerUsage").html(thermostat.thermUsage());
-      $("#error").html(thermostat.error());
+      Usage()
     });
 
     $( "#Reset" ).click(function( ) {
       thermostat.resetTemp();
-      $("#temperature").html(thermostat.temp);
-      $("#powerUsage").html(thermostat.thermUsage());
+      Usage()
     });
 
     $( "#powerSave" ).click(function( ) {
       thermostat.powerSaveSwitch();
-      $("#temperature").html(thermostat.temp);
-      $("#powerUsage").html(thermostat.thermUsage());
+      Usage()
     });
+
 
   </script>
 

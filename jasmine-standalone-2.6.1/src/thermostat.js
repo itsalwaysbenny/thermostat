@@ -39,7 +39,8 @@ Thermostat.prototype.thermUsage = function() {
 };
 
 Thermostat.prototype.error = function() {
-  if (this.temp === this.minTemp) {return "Minimum Temperature"}
+  if (this.powerSave[0][0] === false && this.temp === 25) {return ""}
+  else if (this.temp === this.minTemp) {return "Minimum Temperature"}
   else if (this.powerSave[0][0] === true && this.temp === 25) {return "Maximum Temperature"}
   else if (this.powerSave[0][0] === false && this.temp === 32) {return "Maximum Temperature"}
   else {return ""};
